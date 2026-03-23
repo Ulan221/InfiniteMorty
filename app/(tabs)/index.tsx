@@ -1,12 +1,10 @@
 import { StyleSheet, View } from 'react-native';
-// Импортируем наш готовый виджет
-import { CharacterList } from "@/src/widgets/character-list/ui/CharacterList";
+import {CharacterList} from "@/src/widgets/character-list/ui/CharacterList";
 
 export default function HomeScreen() {
     return (
         <View style={styles.container}>
-
-            <CharacterList />
+            <CharacterList></CharacterList>
         </View>
     );
 }

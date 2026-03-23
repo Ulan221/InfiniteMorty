@@ -1,5 +1,6 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { getCharactersPage } from "@/src/shared/api/characterApi";
+import {useInfiniteQuery} from "@tanstack/react-query";
+import {getCharactersPage} from "@/src/shared/api/characterApi";
+
 
 export const useCharacters = () => {
     return useInfiniteQuery ({
@@ -8,7 +9,7 @@ export const useCharacters = () => {
 
         initialPageParam: 1,
 
-        getNextPageParam: (lastPage, allPages) => {
+        getNextPageParam: (lastPage ) => {
             const nextUrl = lastPage.info.next;
 
             if (!nextUrl) {

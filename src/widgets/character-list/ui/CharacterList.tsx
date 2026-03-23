@@ -1,11 +1,16 @@
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
-import { FlashList } from "@shopify/flash-list";
-import { useCharacters } from "@/services/store/useInfiniteQuerry";
+import { useCharacters } from "@/src/entities/character.ui/model/hooks/useCharacters";
 import {CharacterCard} from "@/src/entities/character.ui/CharacterCard";
 import {Loader} from "@/src/shared/ui/loader";
 import {Character} from "@/src/entities/character.ui/model/types";
+import Animated, {useAnimatedScrollHandler, useSharedValue} from "react-native-reanimated";
 
 export const CharacterList = () => {
+    const scrollY = useSharedValue(0);
+
+    const scrollHandler = useAnimatedScrollHandler((event) => {
+        scrollY.value = event.contentOffset.y;
+    });
     const {
         data,
         fetchNextPage,
@@ -19,7 +24,8 @@ export const CharacterList = () => {
     if (isLoading) return <Loader message="Загрузка героев..." />;
 
     return (
-        <FlashList
+        <Animated.FlatList
+            testID="character-list"
             data={characters}
             renderItem={({ item }) => <CharacterCard item={item} />}
             keyExtractor={(item: Character) => item.id.toString()}

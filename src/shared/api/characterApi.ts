@@ -1,5 +1,5 @@
 import axios from "axios";
-import {ApiResponse} from "@/constants/types";
+import {ApiResponse} from "@/src/shared/api/character/type";
 
 const URL = "https://rickandmortyapi.com/api/character";
 
